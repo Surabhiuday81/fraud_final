@@ -1,0 +1,42 @@
+/* AnimatedBackground.css */
+
+:root {
+    --background-light: linear-gradient(135deg, #e9edf5, #b3c2dc);
+    --background-dark: linear-gradient(135deg, #2911e3, #cecefb);
+}
+
+.animated-background {
+    position: relative;
+    background: var(--background-light); /* Default background */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: background 0.5s ease; /* Smooth transition */
+}
+
+body[data-theme='dark'] .animated-background {
+    background: var(--background-dark);
+}
+
+.animated-background .feature-label {
+    
+    font-size: 1.25rem;
+  
+    
+}
+
+.animated-background .sample-label {
+    font-size: 1.2rem;
+}
+
+/* Ensure textarea always has a white background */
+.animated-background textarea {
+    background-color: white;
+    color: black; /* Ensure text color is readable */
+}
+
+.animated-background form {
+    position: relative;
+    z-index: 1;
+}
