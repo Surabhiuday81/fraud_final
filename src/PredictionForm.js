@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Box, Container, Typography, IconButton, Button, TextareaAutosize } from '@mui/material';
+import { Box, Container, Typography, IconButton, Button, TextareaAutosize, CircularProgress } from '@mui/material';
 import { CheckCircle, Error } from '@mui/icons-material';
 import Lottie from 'react-lottie';
 import successAnimation from './animations/success.json';  // Ensure correct path
@@ -11,6 +11,7 @@ function PredictionForm() {
     const [inputData, setInputData] = useState("");
     const [prediction, setPrediction] = useState(null);
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false); // Loading state
 
     const handleChange = (e) => {
         setInputData(e.target.value);
@@ -19,11 +20,13 @@ function PredictionForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null); // Clear previous errors
+        setLoading(true); // Start loading
 
         const featureArray = inputData.split(',').map(f => parseFloat(f.trim()));
 
         if (featureArray.length !== 30) {
             setError("Please provide exactly 30 feature values.");
+            setLoading(false); // Stop loading
             return;
         }
 
@@ -35,6 +38,8 @@ function PredictionForm() {
         } catch (error) {
             console.error("There was an error making the prediction request!", error);
             setError(error.response ? error.response.data : "There was an error making the prediction request!");
+        } finally {
+            setLoading(false); // Stop loading
         }
     };
 
@@ -51,9 +56,8 @@ function PredictionForm() {
         <Container className="animated-background" sx={{ position: 'relative', p: 4, borderRadius: 2, boxShadow: 3 }}>
             <form onSubmit={handleSubmit}>
                 <div>
-                    
                     <Typography variant="h6" gutterBottom className="feature-label">
-                    Enter Features (comma-separated):
+                        Enter Features (comma-separated):
                     </Typography>
                     <TextareaAutosize
                         minRows={4}
@@ -73,10 +77,15 @@ function PredictionForm() {
                     <Typography variant="h6">Error: {error}</Typography>
                 </Box>
             )}
-            {prediction !== null && !error && (
+            {loading && (
+                <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
+                    <CircularProgress />
+                </Box>
+            )}
+            {prediction !== null && !error && !loading && (
                 <Box sx={{ mt: 2, display: 'flex', alignItems: 'center', color: prediction === 1 ? 'red' : 'green' }}>
                     <Lottie options={defaultOptions} height={50} width={50} />
-                    <Typography variant="h5" sx={{fontWeight: 'bold', ml: 2 }}>
+                    <Typography variant="h5" sx={{ fontWeight: 'bold', ml: 2 }}>
                         {prediction === 1 ? 'FRAUDULENT' : 'NOT FRAUDULENT'}
                     </Typography>
                     <IconButton sx={{ ml: 2 }} color="inherit">
@@ -85,7 +94,6 @@ function PredictionForm() {
                 </Box>
             )}
         </Container>
-        
     );
 }
 

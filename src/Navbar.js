@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AppBar, Toolbar, Typography, FormControlLabel, Switch, Box, Button } from '@mui/material';
 import { Brightness4 as Brightness4Icon, Brightness7 as Brightness7Icon } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const Navbar = ({ darkMode, onThemeToggle }) => {
     const [scrolling, setScrolling] = useState(false);
@@ -31,13 +31,16 @@ const Navbar = ({ darkMode, onThemeToggle }) => {
     return (
         <AppBar position="fixed" sx={appBarStyle}>
             <Toolbar>
-                <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                FraudXpert
+                <Typography 
+                    variant="h6" 
+                    sx={{ flexGrow: 1, fontWeight: 'bold' }}
+                >
+                    <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}> {/* Wrap the name in a Link */}
+                        FraudXpert
+                    </Link>
                 </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <Button color="inherit" component={Link} to="/">Home</Button>
-                    <Button color="inherit">Products</Button>
-                    <Button color="inherit">Partners</Button>
                     <FormControlLabel
                         control={
                             <Switch

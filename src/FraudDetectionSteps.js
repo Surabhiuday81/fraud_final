@@ -35,8 +35,8 @@ const FraudDetectionSteps = () => {
                     textAlign: 'center', 
                     mb: 4, 
                     fontWeight: 'bold', 
-                    fontSize: '2rem', 
-                    color: 'primary.main' // Consistent color with the "Welcome" heading
+                    fontSize: { xs: '1.5rem', sm: '2rem' }, // Adjust font size for smaller screens
+                    color: 'primary.main'
                 }}
             >
                 How Our Fraud Detector Works
@@ -44,8 +44,8 @@ const FraudDetectionSteps = () => {
             <Box
                 sx={{
                     display: 'flex',
-                    flexWrap: 'wrap', // Allow wrapping if needed
-                    gap: 3, // Space between cards
+                    flexWrap: 'wrap',
+                    gap: 3,
                     justifyContent: 'center',
                 }}
             >
@@ -53,39 +53,52 @@ const FraudDetectionSteps = () => {
                     <Paper
                         key={index}
                         sx={{
-                            p: 1, // Padding inside the card
+                            p: 3,
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
                             textAlign: 'center',
-                            borderRadius: 2, // Rounded corners
+                            borderRadius: 2,
                             boxShadow: 3,
                             transition: 'transform 0.3s, box-shadow 0.3s',
                             '&:hover': {
                                 transform: 'scale(1.05)',
                                 boxShadow: 6,
                             },
-                            width: 375, // Increased width for each card
-                            height: 225, // Height for each card
-                            overflow: 'hidden'
+                            width: { xs: '100%', sm: '45%', md: '30%' }, // Responsive width
+                            maxWidth: 375, // Limit max width
                         }}
                     >
-                        <Box sx={{ 
-                            fontSize: 80, // Adjusted icon size
-                            mb: 2, 
-                            color: 'primary.main',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            height: 50, // Adjusted height for icon container
-                            width: 50 // Adjusted width for icon container
-                        }}>
+                        <Box
+                            sx={{
+                                fontSize: 60,
+                                mb: 2,
+                                color: 'primary.main',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                            }}
+                        >
                             {step.icon}
                         </Box>
-                        <Typography variant="h6" sx={{ mb: 1, fontSize: '1.2rem', fontWeight: 'bold', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        <Typography 
+                            variant="h6" 
+                            sx={{ 
+                                mb: 1, 
+                                fontSize: '1.2rem', 
+                                fontWeight: 'bold', 
+                                textAlign: 'center' 
+                            }}
+                        >
                             {step.title}
                         </Typography>
-                        <Typography variant="body2" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'normal' }}>
+                        <Typography 
+                            variant="body2" 
+                            sx={{ 
+                                textAlign: 'center', 
+                                fontSize: { xs: '0.9rem', sm: '1rem' } 
+                            }}
+                        >
                             {step.description}
                         </Typography>
                     </Paper>

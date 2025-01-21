@@ -23,21 +23,58 @@ const Introduction = () => {
                 textAlign: { xs: 'center', md: 'left' },
                 p: 4,
                 bgcolor: 'background.paper',
-                gap: { xs: 1, md: 2 }, // Adjust gap between text and animation
-                overflow: 'hidden', // Prevents cropping of animation
+                gap: { xs: 2, md: 4 }, // Adjust gap between text and animation for responsiveness
+                overflow: 'hidden',
             }}
         >
-            <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: { xs: 'center', md: 'flex-start' }, maxWidth: '50%', pr: { md: 2 } }}>
-                <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+            <Box
+                sx={{
+                    flex: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: { xs: 'center', md: 'flex-start' },
+                    maxWidth: '100%',
+                    pr: { md: 2 },
+                    mb: { xs: 4, md: 0 }, // Adjust bottom margin on smaller screens
+                }}
+            >
+                <Typography 
+                    variant="h3" 
+                    gutterBottom 
+                    sx={{ fontWeight: 'bold', color: 'primary.main' }}
+                >
                     Welcome to Our Financial Fraud Detection
                 </Typography>
-                <Typography variant="h6" sx={{ mb: 2 }}>
+                <Typography 
+                    variant="h6" 
+                    sx={{ mb: 2 }}
+                >
                     Discover how our advanced fraud detection technology helps safeguard your financial transactions.
                     Enter your credit card features to check for any fraudulent activity with our reliable predictor.
                 </Typography>
             </Box>
-            <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', overflow: 'hidden', maxWidth: '50%' }}>
-                <Lottie options={defaultOptions} height={300} width={300} style={{ maxHeight: '100%', maxWidth: '100%' }} /> {/* Adjusted size */}
+
+            <Box
+                sx={{
+                    flex: 1,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '100%',
+                    overflow: 'hidden',
+                    maxWidth: '100%',
+                }}
+            >
+                <Lottie
+                    options={defaultOptions}
+                    height={300}
+                    width={300}
+                    style={{
+                        maxHeight: '100%',
+                        maxWidth: '100%',
+                        objectFit: 'contain', // Ensure animation fits properly
+                    }}
+                />
             </Box>
         </Box>
     );

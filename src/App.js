@@ -32,6 +32,11 @@ function App() {
         palette: {
             mode: darkMode ? 'dark' : 'light',
         },
+        typography: {
+            fontSize: 14,
+            h2: { fontSize: '2rem', '@media (min-width:600px)': { fontSize: '2.5rem' } },
+            body2: { fontSize: '0.875rem', '@media (min-width:600px)': { fontSize: '1rem' } },
+        },
     });
 
     return (
@@ -47,29 +52,43 @@ function App() {
                             flexDirection: 'column',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            p: 4,
+                            p: { xs: 2, sm: 3, md: 4 },
                             bgcolor: 'background.default',
                         }}
                     >
                         <Routes>
-                            <Route path="/" element={
-                                <>
-                                    <Introduction />
-                                    <Container component="main" maxWidth="lg" sx={{ mt: 4, width: '110%' }}> 
-                                        <PredictionForm />
-                                        <Box sx={{ mt: 4 }}>
-                                            <Typography variant="body2" color="textSecondary">
-                                                Disclaimer: This tool is for informational purposes only and should not be considered as financial advice.
-                                                Always consult with a financial expert before making any decisions based on the predictions.
-                                            </Typography>
-                                        </Box>
-                                        <FraudDetectionSteps />
-                                        <Box sx={{ mt: 4 }}>
-                                            <WhyUseFraudDetector />
-                                        </Box>
-                                    </Container>
-                                </>
-                            } />
+                            <Route
+                                path="/"
+                                element={
+                                    <>
+                                        <Introduction />
+                                        <Container
+                                            component="main"
+                                            maxWidth="lg"
+                                            sx={{ mt: { xs: 2, sm: 3, md: 4 }, width: '100%' }}
+                                        >
+                                            <PredictionForm />
+                                            <Box sx={{ mt: { xs: 2, md: 4 } }}>
+                                                <Typography
+                                                    variant="body2"
+                                                    color="textSecondary"
+                                                    sx={{
+                                                        textAlign: 'center',
+                                                        px: { xs: 1, sm: 2 },
+                                                        fontSize: { xs: '0.8rem', sm: '0.9rem', md: '1rem' },
+                                                    }}
+                                                >
+                                                    Disclaimer: This tool is for informational purposes only and should not be considered as financial advice. Always consult with a financial expert before making any decisions based on the predictions.
+                                                </Typography>
+                                            </Box>
+                                            <FraudDetectionSteps />
+                                            <Box sx={{ mt: { xs: 2, md: 4 } }}>
+                                                <WhyUseFraudDetector />
+                                            </Box>
+                                        </Container>
+                                    </>
+                                }
+                            />
                             <Route path="/about-us" element={<AboutUs />} />
                             <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
                             <Route path="/blog" element={<Blog />} />
